@@ -3,7 +3,7 @@
 *.tfstate
 *.tfstate.backup
 
-/secrets
+/secrets/**/*
 
 .terraform
 *.hcl
