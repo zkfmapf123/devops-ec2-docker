@@ -33,17 +33,17 @@ resource "aws_instance" "docker-ec2" {
     key_name = aws_key_pair.leedonggyu.key_name
 
     // 3. Execute Remote
-    provisioner "remote-exec" {
-        inline = [
-            "sudo apt-get update",
-            "sudo apt-get install -y nginx",
-            "sudo apt-get install -y docker.io",
-            "sudo systemctl enable nginx",
-            "sudo systemctl enable docker",
-            "sudo systemctl start nginx",
-            "sudo systemctl start docker"
-        ]
-    }
+    # provisioner "remote-exec" {
+    #     inline = [
+    #         "sudo apt-get update",
+    #         "sudo apt-get install -y nginx",
+    #         "sudo apt-get install -y docker.io",
+    #         "sudo systemctl enable nginx",
+    #         "sudo systemctl enable docker",
+    #         "sudo systemctl start nginx",
+    #         "sudo systemctl start docker"
+    #     ]
+    # }
 
     // 4. AWS KEY CONNECTION
     connection {
