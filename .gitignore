@@ -1,0 +1,9 @@
+# Env
+*.tfvars
+/secret/**/*
+
+.terraform
+*.hcl
+
+zkfmapf1234
+zkfmapf1234.pub
