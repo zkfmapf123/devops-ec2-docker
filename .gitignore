@@ -1,9 +1,9 @@
 # Env
 *.tfvars
-/secret/**/*
+*.tfstate
+*.tfstate.backup
+
+/secrets
 
 .terraform
 *.hcl
-
-zkfmapf1234
-zkfmapf1234.pub

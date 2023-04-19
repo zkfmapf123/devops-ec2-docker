@@ -50,7 +50,6 @@ resource "aws_instance" "docker-ec2" {
       host = coalesce(self.public_ip, self.private_ip)
       type="ssh"
       user = "ubuntu"
-      timeout = "1m"
       private_key = file("./secrets/zkfmapf1234")
     }
 }
