@@ -2,6 +2,7 @@
 *.tfvars
 *.tfstate
 *.tfstate.backup
+.terraform.tfstate.lock.info
 
 /secrets/**/*
 
