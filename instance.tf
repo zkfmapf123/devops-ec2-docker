@@ -12,6 +12,13 @@ module ec2_sg {
     AWS_VPC_ID = module.ec2_vpc.vpc_id
 }
 
+## Elastic IP
+module ec2_eip {
+    source = "./modules/eip"
+
+    AWS_INSTACNE = aws_instance.docker-ec2.id
+}
+
 resource "aws_key_pair" "leedonggyu" {
     key_name = "leedonggyu"
     public_key = file("./secrets/zkfmapf1234.pub")
@@ -32,18 +39,30 @@ resource "aws_instance" "docker-ec2" {
     // 3. key name
     key_name = aws_key_pair.leedonggyu.key_name
 
-    // 3. Execute Remote
-    # provisioner "remote-exec" {
-    #     inline = [
-    #         "sudo apt-get update",
-    #         "sudo apt-get install -y nginx",
-    #         "sudo apt-get install -y docker.io",
-    #         "sudo systemctl enable nginx",
-    #         "sudo systemctl enable docker",
-    #         "sudo systemctl start nginx",
-    #         "sudo systemctl start docker"
-    #     ]
-    # }
+    // 4. Execute Remote
+    provisioner "remote-exec" {
+        inline = [
+            "sudo apt-get update",
+
+            ## NginX
+            "sudo apt-get install -y nginx",
+            "sudo systemctl enable nginx",
+            "sudo systemctl start nginx",
+
+            ## Node
+            "curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -",
+            "sudo apt install -y nodejs",
+
+            ## Git
+            "sudo apt install -y git",
+
+            ## Folder
+            "mkdir -p /home/ubuntu/app",
+            "cd /home/ubuntu/app",
+            "git clone https://github.com/zkfmapf123/node-docker-practice.git",
+            "npm install"
+        ]
+    }
 
     // 4. AWS KEY CONNECTION
     connection {
@@ -54,6 +73,6 @@ resource "aws_instance" "docker-ec2" {
     }
 }
 
-output "ec2_public_ip" {
+output "eip" {
     value = aws_instance.docker-ec2.public_ip
 }

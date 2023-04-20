@@ -17,3 +17,11 @@ variable "AWS_AMIS" {
     "ap-northeast-2" = "ami-04cebc8d6c4f297a3" // t2.micro
   }
 }
+
+variable GIT_USERNAME {
+  type = string
+}
+
+variable GIT_PASSWORD {
+  type = string
+}
