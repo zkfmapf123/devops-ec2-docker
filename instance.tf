@@ -50,9 +50,8 @@ resource "aws_instance" "docker-ec2" {
             "sudo systemctl start nginx",
 
             ## Docker
-            "sudo apt-get install -y docker",
+            "sudo apt-get install -y docker.io",
             "sudo service docker start",
-            "sudo systemctl start nginx",
 
             ## Node
             "curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -",
