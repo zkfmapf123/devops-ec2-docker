@@ -49,6 +49,11 @@ resource "aws_instance" "docker-ec2" {
             "sudo systemctl enable nginx",
             "sudo systemctl start nginx",
 
+            ## Docker
+            "sudo apt-get install -y docker",
+            "sudo service docker start",
+            "sudo systemctl start nginx",
+
             ## Node
             "curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -",
             "sudo apt install -y nodejs",
@@ -60,6 +65,7 @@ resource "aws_instance" "docker-ec2" {
             "mkdir -p /home/ubuntu/app",
             "cd /home/ubuntu/app",
             "git clone https://github.com/zkfmapf123/node-docker-practice.git",
+            "cd node-docker-practice/",
             "npm install"
         ]
     }
