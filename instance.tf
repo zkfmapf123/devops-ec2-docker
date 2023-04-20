@@ -52,6 +52,7 @@ resource "aws_instance" "docker-ec2" {
             ## Docker
             "sudo apt-get install -y docker.io",
             "sudo service docker start",
+            # "sudo apt-get install docker-compose",
 
             ## Node
             "curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -",
